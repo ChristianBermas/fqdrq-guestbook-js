@@ -20,23 +20,24 @@ spec:
         app: guestbook
     spec:
       containers:
-      - image: us.icr.io/<your SN Labs namespace>/guestbook:v1
-        imagePullPolicy: Always
-        name: guestbook
-        ports:
-        - containerPort: 3000
-          name: http
-        resources:
-          limits:
-            cpu: 50m
-            memory: 128Mi
-          requests:
-            cpu: 20m
-            memory: 64Mi
-        env:
-        - name: REDIS_MASTER_SERVICE_HOST
-          value: "redis-master"
-        - name: REDIS_MASTER_SERVICE_PORT
-          value: "6379"
-        - name: SPRING_PROFILES_ACTIVE
-          value: "prod"
+        # - image: us.icr.io/<your SN Labs namespace>/guestbook:v1
+        - image: changianan/guestbook:v2
+          imagePullPolicy: Always
+          name: guestbook
+          ports:
+            - containerPort: 3000
+              name: http
+          resources:
+            limits:
+              cpu: 5m
+              memory: 128Mi
+            requests:
+              cpu: 2m
+              memory: 64Mi
+          env:
+            - name: REDIS_MASTER_SERVICE_HOST
+              value: 'redis-master'
+            - name: REDIS_MASTER_SERVICE_PORT
+              value: '6379'
+            - name: SPRING_PROFILES_ACTIVE
+              value: 'prod'
